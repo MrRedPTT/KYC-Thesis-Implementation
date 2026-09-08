@@ -1,0 +1,34 @@
+services:
+
+  # -------------------------------------------------------------------------
+  # Hardhat local Ethereum node (no real funds — purely for development)
+  # -------------------------------------------------------------------------
+  hardhat-node:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./blockchain:/app
+    command: sh -c "npm install && npx hardhat node"
+    ports:
+      - "8545:8545"
+
+  # -------------------------------------------------------------------------
+  # FastAPI backend
+  # -------------------------------------------------------------------------
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - BLOCKCHAIN_RPC_URL=http://hardhat-node:8545
+      - DEPLOYER_PRIVATE_KEY=${DEPLOYER_PRIVATE_KEY}
+      - DID_REGISTRY_ADDRESS=${DID_REGISTRY_ADDRESS}
+      - VC_REGISTRY_ADDRESS=${VC_REGISTRY_ADDRESS}
+      - AUDIT_TRAIL_ADDRESS=${AUDIT_TRAIL_ADDRESS}
+    volumes:
+      # Mount the blockchain artifacts so the backend can read the ABIs
+      - ./blockchain/artifacts:/app/../blockchain/artifacts:ro
+      # Mount the ai_verification package
+      - ./ai_verification:/ai_verification:ro
+    depends_on:
+      - hardhat-node

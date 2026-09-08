@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------------------
+# Secrets
+# ---------------------------------------------------------------------------
+# .env holds DEPLOYER_PRIVATE_KEY and RPC endpoints. Never commit it.
+# .env.example is the committed template.
+.env
+.env.local
+*.key
+*.pem
+
+# ---------------------------------------------------------------------------
+# Local runner configuration
+# ---------------------------------------------------------------------------
+# Copies of the runner scripts carrying real document/video paths and the
+# applicant's own details. Keep personal data out of the repository.
+*.local.ps1
+*.local.py
+kyc_test.local.py
+test_onboarding.local.ps1
+
+# Test corpus: identity documents and biometric video are personal data and
+# are deliberately not published (see samples/README.md).
+samples/*
+!samples/README.md
+Tools/
+*.mp4
+*.webm
+*.avi
+*.mov
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Node / Hardhat
+# ---------------------------------------------------------------------------
+node_modules/
+blockchain/artifacts/
+blockchain/cache/
+coverage/
+coverage.json
+typechain/
+typechain-types/
+
+# ---------------------------------------------------------------------------
+# Models downloaded at runtime
+# ---------------------------------------------------------------------------
+# InsightFace buffalo_l and EasyOCR weights are fetched on first run.
+*.onnx
+*.pth
+models/
+
+# ---------------------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,19 @@
+{
+  "name": "kyc-blockchain",
+  "version": "1.0.0",
+  "description": "Solidity smart contracts for the KYC DID/VC system (thesis proof-of-concept)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "ethers": "^6.4.0",
+    "chai": "^4.2.0",
+    "dotenv": "^16.4.0",
+    "hardhat": "^2.28.0"
+  }
+}
